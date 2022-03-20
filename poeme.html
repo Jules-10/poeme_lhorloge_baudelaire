@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>Poème enluminé</title>
+    <link rel='stylesheet' type='text/css' media='screen' href='style_poeme.css'>
+</head>
+<body>
+	<h1 id="titre">L'horloge</h1>
+
+	<div id="subtitle" class="brown">
+		<h2 id="auteur">Charles BAUDELAIRE</h2>
+		<h2 id="recueil">Recueil : "Les Fleurs du Mal"</h2>
+	</div>
+
+	
+	<nav id="nav">
+		<!-- le menu burger contenant les informations supplémentaires sur la page (sources, actions possibles) -->
+		<svg viewBox="0 0 100 80" width="20" height="20">
+		<rect width="100" height="13"></rect>
+		<rect y="30" width="100" height="13"></rect>
+		<rect y="60" width="100" height="13"></rect>
+		</svg>
+		<!-- le contenu du menu, par défaut caché mais pouvant s'afficher avec du js + css -->
+		<div id="navContent" class="navHidden">
+			<div id="navActions">
+				<h3>Actions</h3>
+				<ul>
+					<li id="action1">sylphide (v.6) [survol] [double-clic]</li>
+					<li id="action2">Seconde (v.9) [survol]</li>
+					<li id="action3">l'or (v.16) [clic]</li>
+					<li id="action4">vers 19 [survol + déplacement]</li>
+					<li id="action5">clepsydre (v.20) [survol] [double-clic]</li>
+					<li id="action6">Meurs (v.24) [clic enfoncé]</li>
+				</ul>
+			</div>
+			<div id="navSources">
+				<h3>Sources</h3>
+				<ul>
+					<li><a href="https://pixabay.com/fr/illustrations/horloge-boussole-papillon-temps-6138499/" target="blank">image d'horloge de l'entête</a></li>
+					<li><a href="https://pxhere.com/en/photo/910151" target="blank">image de crâne du bas de page</a></li>
+					<li><a href="https://www.rawpixel.com/search/time?page=1&sort=curated" target="blank">image de sablier pour illustrer</a></li>
+					<li><a href="https://www.lerobert.com/" target="blank">définitions</a></li>
+					<li><a href="https://picryl.com/media/emma-livry-sylphide-2b330a" target="blank">image de sylphide</a></li>
+					<li><a href="https://snl.no/klepsydra" target="blank">image de clepsydre</a></li>
+				</ul>
+			</div>
+
+		</div>
+	</nav>
+	
+	<div id="poeme">
+		<p>
+		Horloge ! dieu sinistre, effrayant, impassible,<br>
+		Dont le doigt nous menace et nous dit :  « Souviens-toi !<br>
+		Les vibrantes Douleurs dans ton coeur plein d’effroi<br>
+		Se planteront bientôt comme dans une cible,
+		</p><p>
+		Le plaisir vaporeux fuira vers l’horizon<br>
+		Ainsi qu’une <span class="defini" id="sylphide">sylphide</span> au fond de la coulisse ;<br>
+		Chaque instant te dévore un morceau du délice<br>
+		A chaque homme accordé pour toute sa saison.
+		</p>
+		<div class="definition" id="sylphideDiv"><img src="images/sylphide.jpg" alt="image de sylphide" id="imgSylphide"><p  id="sylphideDef"></p></div>
+		<p>
+		Trois mille six cents fois par heure, la <span id="txtSeconde">Seconde</span><br>
+		Chuchote : Souviens-toi ! – Rapide, avec sa voix<br>
+		D’insecte, Maintenant dit : Je suis Autrefois,<br>
+		Et j’ai pompé ta vie avec ma trompe immonde !
+		</p>
+		<img src="images/time.jpg" alt="image de reveil" id="imgSeconde">
+		<p>
+		Remember ! Souviens-toi, prodigue ! Esto memor !<br>
+		(Mon gosier de métal parle toutes les langues.)<br>
+		Les minutes, mortel folâtre, sont des gangues<br>
+		Qu’il ne faut pas lâcher sans en extraire <span id="lor">l’or</span> !
+		</p><p>
+		Souviens-toi que le Temps est un joueur avide<br>
+		Qui gagne sans tricher, à tout coup ! c’est la loi.<br>
+		<span id="luminosite">Le jour décroît ; la nuit augmente, souviens-toi !</span><br>
+		Le gouffre a toujours soif ; la <span class="def" id="clepsydre">clepsydre</span>  se vide.
+		</p>
+		<div class="definition" id="clepsydreDiv"><img src="images/clepsydre.jpg" alt="image de clepsydre" id="imgClepsydre"><p  id="clepsydreDef"></p></div>
+		<p>
+		Tantôt sonnera l’heure où le divin Hasard,<br>
+		Où l’auguste Vertu, ton épouse encor vierge,<br>
+		Où le repentir même (oh ! la dernière auberge !),<br>
+		Où tout te dira : <span id="meurs">Meurs</span>, vieux lâche ! il est trop tard !  »
+		</p>
+	</div>
+
+	<div id="footer">
+		<img src="images/horloge_bg.jpg" alt="image d'horloge" id="footerImage">
+		<p>© Jules Tennenbaum - 03/2022 - NSI Lycée Joliot Curie, Rennes</p>
+	</div>
+
+
+</body>
+
+
+<script>
+	// Change la couleur de fond du sous-titre en doré quand on clique sur le mot "l'or" (et fait l'inversion aussi)
+	var mot1 = document.getElementById('lor');
+	var soustitre = document.getElementById('subtitle');
+	var couleur = "gold";
+	mot1.addEventListener('click',function(e){
+		soustitre.className=couleur;
+		if (couleur == "brown") {
+			couleur="gold";
+		} else {
+			couleur="brown";
+		}
+	});
+	
+	// affichage du menu quand on passe la souris dessus (et la réciproque)
+	var menuBurger = document.getElementById('nav');
+	var menuDisplay = document.getElementById('navContent');
+	menuBurger.addEventListener('mouseover',function(e){menuDisplay.className="navShow";});
+	menuBurger.addEventListener('mouseout',function(e){menuDisplay.className="navHidden";});
+
+	// affichage d'une image de crâne dans le footer à la place de l'image d'horloge quand on a le clic enfoncé sur le mot "Meurs"
+	var mot2 = document.getElementById('meurs');
+	var footerImage = document.getElementById("footerImage");
+	mot2.addEventListener('mousedown',function(e){footerImage.setAttribute('src','images/skull.jpg');});
+	mot2.addEventListener('mouseup',function(e){footerImage.setAttribute('src','images/horloge_bg.jpg');});
+
+	// change la luminosité du fond de la ligne en fonction de l'emplacement de la souris
+	var ligne = document.getElementById('luminosite');
+	ligne.addEventListener('mousemove', function(e){
+		var opacite = ((e.clientX-(window.screen.width/3))/(window.screen.width/3));
+		ligne.style.backgroundColor = "rgba(42, 43, 42, " + opacite.toString() + ")";
+		ligne.style.boxShadow = "0 0 30px rgba(42, 43, 42, " + (opacite*1.5).toString() + ")";
+	});
+	// reset dès qu'on n'est plus sur le vers concerné
+	ligne.addEventListener('mouseout', function(e){
+		ligne.style.backgroundColor="rgba(42, 43, 42, 0)";
+		ligne.style.boxShadow="0 0 30px rgba(42, 43, 42, 0)";
+	});
+
+	// affiche une image au vers 9 quand on survole le mot "seconde"
+	var mot3 = document.getElementById('txtSeconde');
+	var imageTime = document.getElementById('imgSeconde');
+	mot3.addEventListener('mouseover',function(e){imageTime.style.visibility="visible";});
+	mot3.addEventListener('mouseout',function(e){imageTime.style.visibility="hidden"});
+
+
+	// affichage des définitions de sylphide et clepsydre
+	var sylphide = document.getElementById('sylphide');
+	var sylphideDef = document.getElementById('sylphideDef')
+	sylphide.addEventListener('mouseover',function(e){
+		if (sylphideDef.innerHTML == ""){
+			sylphideDef.innerHTML = "Sylphide : Génie aérien féminin plein de grâce";
+			document.getElementById('imgSylphide').style.visibility="visible";
+			sylphideDef.style.padding="7px 0";
+		}
+	});
+	sylphide.addEventListener('dblclick', function(e){
+		sylphideDef.innerHTML = "";
+		document.getElementById('imgSylphide').style.visibility="hidden";
+		sylphideDef.style.padding="0 0";
+	})
+
+
+	var clepsydre = document.getElementById('clepsydre');
+	var clepsydreDef = document.getElementById('clepsydreDef')
+	clepsydre.addEventListener('mouseover',function(e){
+		if (clepsydreDef.innerHTML == ""){
+			clepsydreDef.innerHTML = "Clepsydre : Horloge à eau";
+			document.getElementById('imgClepsydre').style.visibility="visible";
+			clepsydreDef.style.padding="7px 0";
+		}
+	});
+	clepsydre.addEventListener('dblclick', function(e){
+		clepsydreDef.innerHTML = "";
+		document.getElementById('imgClepsydre').style.visibility="hidden";
+		clepsydreDef.style.padding="0 0";
+	});
+	
+	
+	//mise en surbrillance des parties du poème quand on survole l'action dans le menu de navigation
+	var action1 = document.getElementById('action1');
+	var textPart1 = document.getElementById('sylphide');
+	action1.addEventListener('mouseover', function(e){textPart1.style.backgroundColor="#fffc61";});
+	action1.addEventListener('mouseout', function(e){textPart1.style.backgroundColor="#fffc6100";});
+	
+	var action2 = document.getElementById('action2');
+	var textPart2 = document.getElementById('txtSeconde');
+	action2.addEventListener('mouseover', function(e){textPart2.style.backgroundColor="#fffc61";});
+	action2.addEventListener('mouseout', function(e){textPart2.style.backgroundColor="#fffc6100";});
+	
+	var action3 = document.getElementById('action3');
+	var textPart3 = document.getElementById('lor');
+	action3.addEventListener('mouseover', function(e){textPart3.style.backgroundColor="#fffc61";});
+	action3.addEventListener('mouseout', function(e){textPart3.style.backgroundColor="#fffc6100";});
+	
+	var action4 = document.getElementById('action4');
+	var textPart4 = document.getElementById('luminosite');
+	action4.addEventListener('mouseover', function(e){textPart4.style.backgroundColor="#fffc61";});
+	action4.addEventListener('mouseout', function(e){textPart4.style.backgroundColor="#fffc6100";});
+	
+	var action5 = document.getElementById('action5');
+	var textPart5 = document.getElementById('clepsydre');
+	action5.addEventListener('mouseover', function(e){textPart5.style.backgroundColor="#fffc61";});
+	action5.addEventListener('mouseout', function(e){textPart5.style.backgroundColor="#fffc6100";});
+	
+	var action6 = document.getElementById('action6');
+	var textPart6 = document.getElementById('meurs');
+	action6.addEventListener('mouseover', function(e){textPart6.style.backgroundColor="#fffc61";});
+	action6.addEventListener('mouseout', function(e){textPart6.style.backgroundColor="#fffc6100";});
+</script>
+
+
+
+</html>
